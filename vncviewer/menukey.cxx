@@ -57,6 +57,16 @@ static const MenuKeySymbol menuSymbols[] = {
   {"Control_R",   FL_Control_R,   0x9d, XK_Control_R},
 };
 
+// How to add support for new MenuKeySymbol:
+// { name, fltkcode, keycode, keysym }
+// Name it anything you like e.g. { "Control_R", ... }
+// Need: int fltkcode; int keycode; rdr::U32 keysym;
+// - Look for fltkcode in /usr/include/FL/Enumerations.H. Need to install
+//   fltk `sudo apt install libfltk1.3-dev -y` first.
+// - Look for corresponding int keycode by grepping for any keycode above
+//   e.g. 0xc9, 0xd1, 0x9d. Should be in a file called qnum_to_xorgevdev.c
+// - Look for corresponding rdr::U32 keysym in common/rfb/keysymdef.h
+
 int getMenuKeySymbolCount()
 {
   return sizeof(menuSymbols)/sizeof(menuSymbols[0]);
